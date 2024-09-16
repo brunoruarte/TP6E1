@@ -99,12 +99,10 @@
                       <Component id="jLabelNombre" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextFieldPrecio" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextFieldNombre" max="32767" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jTextFieldPrecio" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jTextFieldNombre" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jComboBoxCategoria" alignment="0" pref="101" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jButtonAgregar" pref="70" max="32767" attributes="0"/>
@@ -119,7 +117,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -141,13 +139,13 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="jComboBoxCategoria">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Bazar"/>
-                <StringItem index="1" value="Comestibles"/>
-                <StringItem index="2" value="Limpiezaa"/>
+                <StringItem index="0" value="Alimentos"/>
+                <StringItem index="1" value="Bazar"/>
+                <StringItem index="2" value="Perfumeria"/>
                 <StringItem index="3" value="Ropa"/>
               </StringArray>
             </Property>

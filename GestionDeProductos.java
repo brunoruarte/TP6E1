@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package tp5;
+package tp6e1;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -11,12 +12,14 @@ import javax.swing.table.DefaultTableModel;
  * @author bruno
  */
 public class GestionDeProductos extends javax.swing.JFrame {
+    //creo un modelo para perzonalizar la tabla
     private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form GestionDeProductos
      */
     public GestionDeProductos() {
         initComponents();   
+        //inicio el nueuvo modelo de la tabla
         encabezados();
 
     }
@@ -34,7 +37,7 @@ public class GestionDeProductos extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxCategoria = new javax.swing.JComboBox<>();
         jLabelCategoria = new javax.swing.JLabel();
         jLabelNombre = new javax.swing.JLabel();
         jLabelPrecio = new javax.swing.JLabel();
@@ -62,7 +65,7 @@ public class GestionDeProductos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Gestión de Productos");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bazar", "Comestibles", "Limpiezaa", "Ropa" }));
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimentos", "Bazar", "Perfumeria", "Ropa" }));
 
         jLabelCategoria.setText("Categoría:");
 
@@ -94,11 +97,10 @@ public class GestionDeProductos extends javax.swing.JFrame {
                     .addComponent(jLabelPrecio)
                     .addComponent(jLabelNombre))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextFieldNombre)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldPrecio)
+                    .addComponent(jTextFieldNombre)
+                    .addComponent(jComboBoxCategoria, 0, 101, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
                 .addComponent(jButtonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                 .addGap(27, 27, 27))
@@ -110,7 +112,7 @@ public class GestionDeProductos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelCategoria))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -170,7 +172,37 @@ public class GestionDeProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:  
+            try {
+                //si el campo "Nombre" está vacío, salir
+                if (jTextFieldNombre.getText().isEmpty()) {                 
+                    JOptionPane.showMessageDialog(this, "Debe ingresar un producto.");
+                    return;
+                }   
+                //si el campo "Precio" está vacío, salir 
+                if (jTextFieldPrecio.getText().isEmpty()) {//si el campo "Precio" está vacío, salir 
+                JOptionPane.showMessageDialog(this, "Debe ingresar un precio."); 
+                return;
+                }
+                
+                //si no están vacios, parseo "Precio" ya que lo obtenemos como String y lo guardo
+                double precio = Double.parseDouble(jTextFieldPrecio.getText()); 
+            
+                //guardo la opcion seleccionada en "Categoria " y guardo el texto ingresado en "Nombre"
+                String categoria = jComboBoxCategoria.getSelectedItem().toString(); 
+                String nombre = jTextFieldNombre.getText(); 
+                
+                //agrego las variables a la tabla (ver método)
+                agregarProducto(nombre, categoria, precio);
+            
+                //limpio los campos
+                jTextFieldNombre.setText("");
+                jTextFieldPrecio.setText("");
+                
+        //excepción en caso de ingresar un precio inválido        
+        } catch (Exception e) { 
+            JOptionPane.showMessageDialog(this, "Ingrese un formato de precio válido.");
+        }          
     }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
@@ -214,7 +246,7 @@ public class GestionDeProductos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelNombre;
@@ -228,6 +260,7 @@ public class GestionDeProductos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPrecio;
     // End of variables declaration//GEN-END:variables
 
+    //método para modificar el diseño de la tabla
     private void encabezados(){
         modelo.addColumn("Nombre");
         modelo.addColumn("Categoría");
@@ -235,5 +268,8 @@ public class GestionDeProductos extends javax.swing.JFrame {
         jTableProductos.setModel(modelo);
     }
     
-    
+    //agrego un objeto como nueva fila a la tabla
+    public void agregarProducto(String nombre, String categoria, double precio){
+        modelo.addRow(new Object[]{nombre,categoria,precio});
+    }    
 }
