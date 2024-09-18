@@ -187,7 +187,12 @@ public class GestionDeProductos extends javax.swing.JFrame {
                 
                 //si no están vacios, parseo "Precio" ya que lo obtenemos como String y lo guardo
                 double precio = Double.parseDouble(jTextFieldPrecio.getText()); 
-            
+                
+                //Verificar si el precio es positivo
+                if (precio < 0) {
+                    JOptionPane.showMessageDialog(this, "El precio debe ser positivo.");
+                    return;
+                }
                 //guardo la opcion seleccionada en "Categoria " y guardo el texto ingresado en "Nombre"
                 String categoria = jComboBoxCategoria.getSelectedItem().toString(); 
                 String nombre = jTextFieldNombre.getText(); 
